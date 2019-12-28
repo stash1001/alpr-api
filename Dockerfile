@@ -53,7 +53,6 @@ RUN cd openalpr/src/build && make install
 
 COPY  openalpr.conf openalpr.conf
 COPY app.py app.py
-RUN echo $(date) > created
 
-CMD curl -s https://www.webuyanycar.com/globalassets/photo/plate1.jpg -o plate.jpg && cat created && python app.py && sleep infinity
+CMD curl -s https://www.webuyanycar.com/globalassets/photo/plate1.jpg -o plate.jpg && while true; do python app.py; sleep 2; done
 
