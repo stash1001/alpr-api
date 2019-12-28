@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstcicdgpuk8sthing
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: myfirstcicdgpuk8sthing
+      # https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia-cuda/Dockerfile
+      image: "stash1001/myfirstcicdgpuk8sthing"
+      resources:
+        limits:
+          nvidia.com/gpu: 1
