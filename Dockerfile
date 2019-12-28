@@ -52,7 +52,7 @@ RUN cd openalpr/src/build && make
 RUN cd openalpr/src/build && make install
 
 COPY  openalpr.conf openalpr.conf
-COPY app.py
+COPY app.py app.py
 RUN echo $(date) > created
 
 CMD curl https://www.webuyanycar.com/globalassets/photo/plate1.jpg -o plate.jpg && python app.py
