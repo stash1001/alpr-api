@@ -52,8 +52,8 @@ RUN cd openalpr/src/build && make
 RUN cd openalpr/src/build && make install
 
 COPY  openalpr.conf openalpr.conf
-COPY cars.mp4 cars.mp4
+COPY app.py
 RUN echo $(date) > created
 
-CMD alpr --config openalpr.conf -n 1 --clock -c eu cars.mp4
+CMD curl https://www.webuyanycar.com/globalassets/photo/plate1.jpg -o plate.jpg && python app.py
 
