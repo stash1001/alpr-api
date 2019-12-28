@@ -2,7 +2,7 @@ import json
 from openalpr import Alpr
 import sys
 
-alpr = Alpr("us", "openalpr.conf", "/usr/share/openalpr/runtime_data")
+alpr = Alpr("eu", "openalpr.conf", "/usr/share/openalpr/runtime_data")
 if not alpr.is_loaded():
     print("Error loading OpenALPR")
     sys.exit(1)
