@@ -52,7 +52,5 @@ RUN cd openalpr/src/build && make
 RUN cd openalpr/src/build && make install
 
 COPY  openalpr.conf openalpr.conf
-COPY app.py app.py
 
-CMD curl -s https://www.webuyanycar.com/globalassets/photo/plate1.jpg -o plate.jpg && while true; do python app.py; sleep 2; done
-
+entrypoint ["alpr"]
