@@ -1,11 +1,12 @@
-import json
-from openalpr import Alpr
-import sys
+from flask import Flask, make_response
+app = Flask(__name__)
 
-alpr = Alpr("eu", "openalpr.conf", "/usr/share/openalpr/runtime_data")
-if not alpr.is_loaded():
-    print("Error loading OpenALPR")
-    sys.exit(1)
-results = alpr.recognize_file("plate.jpg")
-print(json.dumps(results, indent=4))
-alpr.unload()
+
+@app.route('/', methods=['POST'])
+def simple():
+    print("Got it 2")
+    return make_response("", 200)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
