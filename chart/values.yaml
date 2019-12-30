@@ -21,7 +21,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: alpr.hempstock.it
-      paths: []
+      paths: /
 
   tls: []
   #  - secretName: chart-example-tls
