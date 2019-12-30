@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/health', methods=['GET'])
 def health():
-    return make_response("healthy", 200)
+    return make_response("", 200)
 
 
 @app.route('/', methods=['POST'])
