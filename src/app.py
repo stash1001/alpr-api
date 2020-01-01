@@ -33,6 +33,7 @@ def health():
 
 @app.route('/', methods=['POST'])
 def simple():
+    print(type(request.files['image']))
     results = recogniseplate(request.files['image'].read())
     return make_response(json.dumps(results), 200)
 
@@ -46,4 +47,4 @@ if __name__ == "__main__":
     alpr = Alpr("eu", configfile, "/usr/share/openalpr/runtime_data")
     alpr.set_default_region("eu")
     alpr.set_detect_region(False)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0")
