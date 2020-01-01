@@ -1,6 +1,11 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 from openalpr import Alpr
 import subprocess
+import json
+import openalpr
+
+print(openalpr.__file__)
+
 
 app = Flask(__name__)
 
@@ -16,6 +21,11 @@ def gpu():
         return False
 
 
+def recogniseplate(jpeg):
+    results = alpr.recognize_array(jpeg)
+    return results
+
+
 @app.route('/health', methods=['GET'])
 def health():
     return make_response("", 200)
@@ -23,8 +33,8 @@ def health():
 
 @app.route('/', methods=['POST'])
 def simple():
-    print("Got it 2")
-    return make_response("healthy", 200)
+    results = recogniseplate(request.files['image'].read())
+    return make_response(json.dumps(results), 200)
 
 
 if __name__ == "__main__":
@@ -34,4 +44,6 @@ if __name__ == "__main__":
         configfile = "openalpr-cpu.conf"
 
     alpr = Alpr("eu", configfile, "/usr/share/openalpr/runtime_data")
+    alpr.set_default_region("eu")
+    alpr.set_detect_region(False)
     app.run(host="0.0.0.0", debug=True)
