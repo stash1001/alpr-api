@@ -33,7 +33,8 @@ def health():
 
 @app.route('/', methods=['POST'])
 def simple():
-    print(type(request.files['image']))
+    top_n = int(request.form.get("top_n", 1))
+    alpr.set_top_n(top_n)
     results = recogniseplate(request.files['image'].read())
     return make_response(json.dumps(results), 200)
 
