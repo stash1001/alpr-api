@@ -48,4 +48,4 @@ if __name__ == "__main__":
     alpr = Alpr("eu", configfile, "/usr/share/openalpr/runtime_data")
     alpr.set_default_region("eu")
     alpr.set_detect_region(False)
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=False, threaded=False)
