@@ -18,14 +18,6 @@ pipeline {
         }
       }
     }
-    stage('test') {
-        steps{
-            script{
-                sh label: '', script: 'docker run --name alpr_alpr-api_pipeline$BUILD_NUMBER --gpus 1 -v /tmp/results:/tmp/results -i stash1001/stash1001/alpr-api:$BUILD_NUMBER bash -c "cd alpr-alpr-api && bash run.sh -i samples/test -o /tmp/output -c /tmp/results/results.csv"'
-                sh label: '', script: 'md5sum /tmp/results/results.csv'
-            }
-        }
-    }
     stage('Deploy Image') {
       steps{
         script {
